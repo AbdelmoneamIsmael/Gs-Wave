@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gtv/core/routes/app_routes.dart';
 import 'package:gtv/features/conference/presentation/pages/conference_page.dart';
+import 'package:gtv/features/dial_page/presentation/bindings/dial_bindings.dart';
 import 'package:gtv/features/dial_page/presentation/pages/dial_screen.dart';
 import 'package:gtv/features/messages/presentation/pages/messages.dart';
 import 'package:gtv/features/names/presentation/bindings/names_bindings.dart';
@@ -50,7 +51,7 @@ class HomeController extends GetxController {
           routeName: Routes.dialPage,
           settings: settings,
           page: () => const DialScreen(),
-          // binding: DialBindings(),
+          binding: DialBindings(),
           transition: Transition.noTransition,
         );
       case Routes.messagePage:

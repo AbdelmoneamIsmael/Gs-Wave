@@ -20,4 +20,6 @@ abstract class IconsAssets {
   static const String micOff = 'assets/icons/mic-off-svgrepo-com.svg';
 
   static const String delete = 'assets/icons/delete-2-svgrepo-com.svg';
+
+  static const String swapPerson = 'assets/icons/swap_person.svg';
 }

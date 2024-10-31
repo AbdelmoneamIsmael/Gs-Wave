@@ -30,12 +30,20 @@ environment:
 dependencies:
   app_settings: ^5.1.1
   azlistview: ^2.0.0
+  call_log:
+    git:
+      url: https://github.com/AbdelmoneamIsmael/call_log.git
+      ref: master
   cupertino_icons: ^1.0.8
   flutter:
     sdk: flutter
-  flutter_contacts: ^1.1.9+2
+  flutter_contacts:
+    git:
+      url: https://github.com/AbdelmoneamIsmael/flutter_contacts_letter_scroll.git
+      ref: master
   flutter_svg: ^2.0.10+1
   get: ^4.6.6
+  onscreen_num_keyboard: ^1.0.4
   permission_handler: ^11.3.1
   rename: ^3.0.2
 

@@ -14,6 +14,7 @@ class NameController extends GetxController {
     if (await Permission.contacts.request().isGranted) {
       Iterable<Contact> contacts = await FlutterContacts.getContacts();
 
+
       _contacts = contacts.toList();
 
       update();

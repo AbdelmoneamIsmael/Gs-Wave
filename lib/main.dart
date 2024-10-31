@@ -12,6 +12,7 @@ import 'package:permission_handler/permission_handler.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Permission.contacts.request();
+
   runApp(const MyApp());
 }
 
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: AppColors.backgroundColor,
         bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           selectedItemColor: AppColors.activeColor,
-          backgroundColor: AppColors.whiteColor,
+          backgroundColor: AppColors.backgroundColor,
           unselectedItemColor: AppColors.inactiveColor,
           type: BottomNavigationBarType.fixed,
           selectedLabelStyle: AppTextStyles.regular,

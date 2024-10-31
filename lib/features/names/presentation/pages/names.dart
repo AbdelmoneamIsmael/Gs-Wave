@@ -1,3 +1,4 @@
+import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gtv/core/helper/responsive_helper.dart';
@@ -5,7 +6,9 @@ import 'package:gtv/core/utils/app_colors.dart';
 import 'package:gtv/core/utils/test_style.dart';
 import 'package:gtv/core/widgets/custom_appbar.dart';
 import 'package:gtv/core/widgets/multi_selection.dart';
+import 'package:gtv/core/widgets/name_widget.dart';
 import 'package:gtv/features/names/presentation/controller/name_controller.dart';
+import 'package:gtv/features/names/presentation/widgets/title_name.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 class NamesScreen extends GetView<NameController> {
@@ -70,35 +73,67 @@ class NamesScreen extends GetView<NameController> {
                 return FutureBuilder(
                     future: Permission.contacts.isGranted,
                     builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
                       if (snapshot.data == true) {
                         return controller.contacts.isNotEmpty
                             ? Expanded(
-                                child: ListView.builder(
-                                  itemCount: controller.contacts.length,
-                                  itemBuilder: (context, index) {
-                                    return Container(
-                                      decoration: const BoxDecoration(
-                                          color: AppColors.whiteColor,
-                                          border: Border(
-                                            bottom: BorderSide(
-                                              color: Colors.grey,
-                                              width: 0.5,
-                                            ),
-                                          )),
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 16.responsiveWidth,
-                                          vertical: 16.responsiveHeight),
-                                      child: Text(
-                                        controller.contacts[index].displayName
-                                            .toString(),
-                                        style: AppTextStyles.semiBold.copyWith(
-                                          color: AppColors.blackColor,
-                                          fontSize: 20.responsiveFontSize,
-                                        ),
+                                child: AzListView(
+                                    indexBarMargin:
+                                        EdgeInsets.all(12.responsiveWidth),
+                                    indexBarItemHeight: 20.responsiveHeight,
+                                    indexBarOptions: IndexBarOptions(
+                                      textStyle:
+                                          AppTextStyles.semiBold.copyWith(
+                                        color: AppColors.blackColor,
+                                        fontSize: 14.responsiveFontSize,
                                       ),
-                                    );
-                                  },
-                                ),
+                                    ),
+                                    physics: const BouncingScrollPhysics(),
+                                    data: controller.contacts,
+                                    itemCount: controller.contacts.length,
+                                    itemBuilder: (context, index) {
+                                      return Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          index == 0
+                                              ? TitleName(
+                                                  title: controller
+                                                      .contacts[index]
+                                                      .displayName
+                                                      .toString()
+                                                      .substring(0, 1)
+                                                      .toUpperCase())
+                                              : (controller
+                                                          .contacts[index]
+                                                          .displayName
+                                                          .isNotEmpty &&
+                                                      controller.contacts[index]
+                                                              .displayName[0] !=
+                                                          controller
+                                                              .contacts[
+                                                                  index - 1]
+                                                              .displayName[0])
+                                                  ? TitleName(
+                                                      title: controller
+                                                          .contacts[index]
+                                                          .displayName
+                                                          .toString()
+                                                          .substring(0, 1)
+                                                          .toUpperCase())
+                                                  : Container(),
+                                          NameWidget(
+                                            name: controller
+                                                .contacts[index].displayName
+                                                .toString(),
+                                          ),
+                                        ],
+                                      );
+                                    }),
                               )
                             : Text(
                                 'لا يوجد اتصالات',
