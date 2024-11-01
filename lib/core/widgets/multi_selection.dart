@@ -16,30 +16,35 @@ class MultiSelectionItem extends StatelessWidget {
   const MultiSelectionItem({
     super.key,
     required this.title,
-    required this.isActive,
+    required this.isActive, this.onTap,
   });
   final String title;
   final bool isActive;
+  final void Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds:500),
-      padding: EdgeInsets.symmetric(
-          horizontal: 10.responsiveFontSize, vertical: 5.responsiveWidth),
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: AppColors.activeColor,
-          width: .5,
+    return GestureDetector(
+      onTap:onTap,
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 500),
+        padding: EdgeInsets.symmetric(
+            horizontal: 10.responsiveFontSize, vertical: 5.responsiveWidth),
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: AppColors.activeColor,
+            width: .5,
+          ),
+          color: isActive
+              ? AppColors.activeColor
+              : AppColors.appbarBackgroundColor,
         ),
-        color:
-            isActive ? AppColors.activeColor : AppColors.appbarBackgroundColor,
-      ),
-      child: Text(
-        title,
-        style: AppTextStyles.regular.copyWith(
-          color: isActive ? AppColors.whiteColor : AppColors.inactiveColor,
-          fontSize: 20.responsiveFontSize,
+        child: Text(
+          title,
+          style: AppTextStyles.regular.copyWith(
+            color: isActive ? AppColors.whiteColor : AppColors.inactiveColor,
+            fontSize: 20.responsiveFontSize,
+          ),
         ),
       ),
     );

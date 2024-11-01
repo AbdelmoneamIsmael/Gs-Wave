@@ -1,3 +1,5 @@
+import 'package:gtv/features/add_new_name/presentation/pages/add_new_name_page.dart';
+
 abstract class Routes {
   Routes._();
   
@@ -11,6 +13,9 @@ abstract class Routes {
   static const conferencePage = '/conference';
 
   static const messagePage = '/message';
+
+  static const addNewName = '/add_new_name';
+  static const addNewAccount = '/add_new_account';
   
 
   

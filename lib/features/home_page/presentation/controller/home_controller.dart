@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gtv/core/routes/app_routes.dart';
+import 'package:gtv/features/add_new_account/presentation/pages/add_new_account.dart';
+import 'package:gtv/features/add_new_name/presentation/pages/add_new_name_page.dart';
 import 'package:gtv/features/conference/presentation/pages/conference_page.dart';
 import 'package:gtv/features/dial_page/presentation/bindings/dial_bindings.dart';
 import 'package:gtv/features/dial_page/presentation/pages/dial_screen.dart';
@@ -26,6 +28,14 @@ class HomeController extends GetxController {
       Get.offAndToNamed(bottomNavigationBarRoutes[currentIndex], id: 1);
       update();
     }
+  }
+
+  void goToNamedWithNavigatedRoute(String routeName) {
+    Get.offAndToNamed(
+      routeName,
+      id: 1,
+    );
+    update();
   }
 
   Route? onGenerateRoute(RouteSettings settings) {
@@ -59,6 +69,22 @@ class HomeController extends GetxController {
           routeName: Routes.messagePage,
           settings: settings,
           page: () => const MessagesScreen(),
+          // binding: MessageBindings(),
+          transition: Transition.noTransition,
+        );
+      case Routes.addNewAccount:
+        return GetPageRoute(
+          routeName: Routes.addNewAccount,
+          settings: settings,
+          page: () => const AddNewAccount(),
+          // binding: MessageBindings(),
+          transition: Transition.noTransition,
+        );
+      case Routes.addNewName:
+        return GetPageRoute(
+          routeName: Routes.addNewName,
+          settings: settings,
+          page: () => const AddNewName(),
           // binding: MessageBindings(),
           transition: Transition.noTransition,
         );

@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:device_preview/device_preview.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:gtv/core/routes/app_pages.dart';
@@ -13,7 +15,13 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Permission.contacts.request();
 
-  runApp(const MyApp());
+  runApp(
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => const MyApp(),
+      //const MyApp()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

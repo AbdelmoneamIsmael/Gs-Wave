@@ -4,6 +4,10 @@ import 'package:call_log/call_log.dart';
 
 class DialController extends GetxController {
   TextEditingController dialController = TextEditingController();
+  bool isLoding = false;
+  List<CallLogEntry> callHestory = [];
+  List<CallLogEntry> missingCalls = [];
+  int selectedPage = 0;
 
   @override
   void onInit() {
@@ -27,7 +31,26 @@ class DialController extends GetxController {
   }
 
   void getCallLog() async {
-    Iterable<CallLogEntry> list = await CallLog.get();
+    isLoding = true;
+    update();
+    try {
+      Iterable<CallLogEntry> list = await CallLog.get();
 
+      callHestory = list.toList();
+
+      missingCalls = callHestory
+          .where((element) => element.callType == CallType.missed)
+          .toList();
+      isLoding = false;
+      update();
+    } catch (e) {
+      isLoding = false;
+      update();
+    }
+  }
+
+  void chageIndex(int index) {
+    selectedPage = index; 
+    update();
   }
 }
