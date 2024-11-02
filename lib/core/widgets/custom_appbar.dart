@@ -4,18 +4,23 @@ import 'package:gtv/core/utils/app_colors.dart';
 
 class CustomAppBar extends StatelessWidget {
   const CustomAppBar(
-      {super.key, required this.center, this.leading, this.action});
+      {super.key,
+      required this.center,
+      this.leading,
+      this.action,
+      this.bagroundColor});
   final Widget center;
   final Widget? leading, action;
+  final Color? bagroundColor;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: 60.responsiveHeight,
-      decoration: const BoxDecoration(
-          color: AppColors.appbarBackgroundColor,
-          border: Border(
+      decoration: BoxDecoration(
+          color: bagroundColor ?? AppColors.appbarBackgroundColor,
+          border: const Border(
             bottom: BorderSide(
               color: Colors.grey,
               width: 0.5,

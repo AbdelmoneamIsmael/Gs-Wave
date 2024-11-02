@@ -16,11 +16,12 @@ Future<void> main() async {
   await Permission.contacts.request();
 
   runApp(
-    DevicePreview(
-      enabled: !kReleaseMode,
-      builder: (context) => const MyApp(),
-      //const MyApp()
-    ),
+    // DevicePreview(
+    //   enabled: !kReleaseMode,
+    //   builder: (context) => const MyApp(),
+    
+    // ),
+      const MyApp()
   );
 }
 

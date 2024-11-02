@@ -26,6 +26,9 @@ class AppTextField extends StatelessWidget {
         enabled: enabeld,
         controller: controller,
         textAlign: textAlign ?? TextAlign.start,
+        style: AppTextStyles.medium.copyWith(
+          fontSize: 16.responsiveFontSize,
+        ),
         decoration: InputDecoration(
           border: InputBorder.none,
           focusedBorder: const OutlineInputBorder(
@@ -64,7 +67,7 @@ class AppTextField extends StatelessWidget {
           hintText: hintText,
           hintStyle: AppTextStyles.medium.copyWith(
             color: Colors.grey,
-            fontSize: 20.responsiveFontSize,
+            fontSize: 16.responsiveFontSize,
           ),
         ),
       ),

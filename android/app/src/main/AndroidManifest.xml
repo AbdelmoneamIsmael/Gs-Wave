@@ -4,7 +4,7 @@
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_CALL_LOG" />
     <application
-        android:label="Gs Wave"
+        android:label="Loay GSWAVE"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
